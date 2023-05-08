@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cheryl</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "https://api.chucknorris.io/jokes/categories",
+                type: "GET",
+                success: function(response) {
+                    // Tampilkan data dalam tabel HTML
+                    var table = "<table><tr><th>Category</th></tr>";
+                    for (var i = 0; i < response.length; i++) {
+                        table += "<tr><td>" + response[i] + "</td></tr>";
+                    }
+                    table += "</table>";
+                    $("#result").html(table);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+</body>
+</html>
